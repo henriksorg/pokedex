@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+}
+
+#pokedex {
+    min-height: 50vh;
+    background-color: rgb(129, 75, 129);
+}
+
+
+
+/* Pokemon-Card-Style */
+.pokedex-card {}
+
+/*the upper part of the card */
+.card-header {}
+
+.pokemon-number {}
+
+.pokemon-class {}
+
+.pokemon-image {}
+
+/* the lower part of the card */
