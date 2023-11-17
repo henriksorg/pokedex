@@ -3,22 +3,76 @@ body {
 }
 
 #pokedex {
-    min-height: 50vh;
     background-color: rgb(129, 75, 129);
 }
 
 
 
-/* Pokemon-Card-Style */
-.pokedex-card {}
+/**********    Pokemon-Card-Style      *********/
+#pokedex-card {
+    background-color: blueviolet;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.8);
+}
+
+#card-container{
+    padding: 50px;
+}
 
 /*the upper part of the card */
-.card-header {}
+#card-header {
+    padding: 5px;
+    position: relative;
+    padding-bottom: 100px;
+    border-radius: 10px;
+}
 
-.pokemon-number {}
+#pokemon-name {
+    color: white;
+}
 
-.pokemon-class {}
+#pokemon-number {
+    color: white;
+}
 
-.pokemon-image {}
+#pokemon-type {
+    color: white;
+}
+
+.img-container{
+    position: absolute;
+    bottom: -10px;
+}
+
+#pokemon-image {
+    height: 150px;
+}
+
+
+
 
 /* the lower part of the card */
+.about-table{
+    font-size: 12px;
+}
+
+.about-table td:first-child{
+    color: grey;
+    padding-right: 10px;
+}
+
+#card-description{
+    padding: 5px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+#species {}
+#height {}
+#weight {}
+#abilities {}
+#gender {}
+#egg-groups {}
+#egg-cycle {}

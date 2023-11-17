@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+  </head>
 
-<body onload="loadPokemon()">
-    <div id="pokedex-card">
+  <body onload="loadPokemon()">
+    <div id="card-container">
+      <div id="pokedex-card">
         <div id="card-header">
-            <span id="pokemon-name">Bulbasaur</span>
-            <span id="pokemon-number">#001</span>
-            <div id="pokemon-class">Grass</div>
-            <div id="pokemon-image"></div>
+          <span id="pokemon-name">Bulbasaur</span>
+          <span id="pokemon-number">#001</span>
+          <div id="pokemon-type">Grass</div>
+          <div class="w-100 d-flex justify-content-center img-container"><img id="pokemon-image" src="" alt="pokemon"></div>
         </div>
-
         <div id="card-description">
-            <table>
-                <tr><td></td>Species<td id="species">Seed</td></tr>
-                <tr><td></td>Height<td id="species">70cm</td></tr>
-                <tr><td></td>Weight<td id="species">6.9 kg</td></tr>
-                <tr><td></td>Abilities<td id="species">Overgrow</td></tr>
-                <th>Breeding</th>
-                <tr><td></td>Species<td id="species">Seed</td></tr>
-                <tr><td></td>Height<td id="species">70cm</td></tr>
-                <tr><td></td>Weight<td id="species">6.9 kg</td></tr>
-            </table>
+          <table class="about-table">
+            <tr>
+              <td>Habitat</td>
+              <td id="habitat">Seed</td>
+            </tr>
+            <tr>
+              <td>Height</td>
+              <td id="height">70cm</td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td id="weight">6.9 kg</td>
+            </tr>
+            <tr>
+              <td>Abilities</td>
+              <td id="ability">Overgrow</td>
+            </tr>
+            <th>Breeding</th>
+            <tr>
+              <td>Gender</td>
+              <td id="gender">
+                <span id="gender-m">87.5%</span><span id="gender-w">12.5%</span>
+              </td>
+            </tr>
+            <tr>
+              <td>egg-groups</td>
+              <td id="egg-groups">Monster</td>
+            </tr>
+            <tr>
+              <td>egg-cycle</td>
+              <td id="egg-cycle">Grass</td>
+            </tr>
+          </table>
         </div>
+      </div>
     </div>
-
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
