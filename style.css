@@ -47,6 +47,14 @@ body {
     z-index: 3;
 }
 
+#pokemon-type span{
+    font-size: 10px;
+    margin-right: 8px;
+    padding: 4px 4px;
+    background-color: rgb(75, 186, 75);
+    border-radius: 20px;
+}
+
 .img-container {
     position: absolute;
     bottom: -10px;
@@ -152,3 +160,38 @@ body {
 }
 
 #egg-cycle {}
+
+
+
+
+
+
+
+
+.stats-table{
+    font-size: 12px;
+}
+
+.stat-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-container span{
+    font-size: 12px;
+}
+
+.progress{
+    width: 50%;
+    height: 4px !important;
+}
+
+.stat-label{
+    width: 33%;
+}
+
+.stat-value{
+    text-align: right;
+    margin-right: 8px;
+}

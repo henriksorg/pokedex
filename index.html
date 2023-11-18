@@ -23,46 +23,117 @@
         <nav class="navbar navbar-expand-sm navbar-light">
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" id="nav-link-0" onclick="changeCardSection('nav-link-0')" href="#">About</a>
-              <a class="nav-item nav-link" id="nav-link-1" onclick="changeCardSection('nav-link-1')" href="#">Base Stats</a>
-              <a class="nav-item nav-link" id="nav-link-2" onclick="changeCardSection('nav-link-2')" href="#">Evolution</a>
+              <a class="nav-item nav-link active" id="nav-link-0" onclick="changeCardSection('nav-link-0')"
+                href="#">About</a>
+              <a class="nav-item nav-link" id="nav-link-1" onclick="changeCardSection('nav-link-1')" href="#">Base
+                Stats</a>
+              <a class="nav-item nav-link" id="nav-link-2" onclick="changeCardSection('nav-link-2')"
+                href="#">Evolution</a>
               <a class="nav-item nav-link" id="nav-link-3" onclick="changeCardSection('nav-link-3')" href="#">Moves</a>
             </div>
           </div>
         </nav>
-        <table class="about-table">
-          <tr>
-            <td>Habitat</td>
-            <td id="habitat">Seed</td>
-          </tr>
-          <tr>
-            <td>Height</td>
-            <td id="height">70cm</td>
-          </tr>
-          <tr>
-            <td>Weight</td>
-            <td id="weight">6.9 kg</td>
-          </tr>
-          <tr>
-            <td>Abilities</td>
-            <td id="ability">Overgrow</td>
-          </tr>
-          <th>Breeding</th>
-          <tr>
-            <td>Gender</td>
-            <td id="gender">
-              <span id="gender-m">87.5%</span><span id="gender-w">12.5%</span>
-            </td>
-          </tr>
-          <tr>
-            <td>egg-groups</td>
-            <td id="egg-groups">Monster</td>
-          </tr>
-          <tr>
-            <td>growth-rate</td>
-            <td id="growth-rate">medium</td>
-          </tr>
-        </table>
+        <div id="insert-container">
+          <div class="stats-table">
+            <table class="w-100">
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-hp">HP</td>
+
+                <td class="stat-value" id="stat-value-hp">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-hp">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 45%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-attack">Attack</td>
+
+                <td class="stat-value" id="stat-value-attack">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-attack">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 49%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-defense">Defense</td>
+
+                <td class="stat-value" id="stat-value-defense">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-defense">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 49%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-special-attack">Sp-Attack</td>
+
+                <td class="stat-value" id="stat-value-special-attack">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-special-attack">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 65%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-special-defense">Sp-Defense</td>
+
+                <td class="stat-value" id="stat-value-special-defense">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-special-defense">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 65%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-speed">Speed</td>
+
+                <td class="stat-value" id="stat-value-speed">1</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-speed">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 45%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr class="d-flex w-100">
+                <td class="stat-label" id="stat-label-speed">Total</td>
+
+                <td class="stat-value" id="stat-value-speed">318</td>
+
+                <td class="flex-grow-1 d-flex align-items-center" id="stat-progress-speed">
+                  <div class="progress w-100">
+                    <div class="progress-bar" style="width: 56%"></div>
+                  </div>
+                </td>
+
+              </tr>
+
+            </table>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

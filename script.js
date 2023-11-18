@@ -39,7 +39,27 @@ async function loadEggGroup(){
   let response = await fetch(url);
   eggGroup = await response.json();
   console.log(eggGroup);
-  renderPokemonCard();
+  // renderPokemonCard();
+  insertBaseStats();
+}
+
+
+function changeCardSection(id){
+  removeActiveClass();
+  addActiveClass(id);
+}
+
+
+function removeActiveClass(navItem, id){
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('nav-link-' + i).classList.remove('active');
+  }
+}
+
+
+function addActiveClass(id){
+  let navItem = document.getElementById(id);
+  navItem.classList.add('active');
 }
 
 
@@ -61,16 +81,56 @@ function changeBgColor(bgColor, id){
 }
 
 
-function renderPokemonCard(){
-  insertHabitat();
-  insertName();
-  insertType();
-  insertWeight();
-  insertAbility();
-  insertHeight();
-  insertEggGroups();
-  insertGender();
-  insertGrowthRate();
+// function renderPokemonCard(){
+//   // loadAboutSection();
+//   insertHabitat();
+//   insertName();
+//   insertType();
+//   insertWeight();
+//   insertAbility();
+//   insertHeight();
+//   insertEggGroups();
+//   insertGender();
+//   insertGrowthRate();
+// }
+
+
+function loadAboutSection(){
+  document.getElementById('insert-container').innerHTML = /*html*/`
+    <table class="about-table">
+          <tr>
+            <td>Habitat</td>
+            <td id="habitat">Seed</td>
+          </tr>
+          <tr>
+            <td>Height</td>
+            <td id="height">70cm</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td id="weight">6.9 kg</td>
+          </tr>
+          <tr>
+            <td>Abilities</td>
+            <td id="ability">Overgrow</td>
+          </tr>
+          <th>Breeding</th>
+          <tr>
+            <td>Gender</td>
+            <td id="gender">
+              <span id="gender-m">87.5%</span><span id="gender-w">12.5%</span>
+            </td>
+          </tr>
+          <tr>
+            <td>egg-groups</td>
+            <td id="egg-groups">Monster</td>
+          </tr>
+          <tr>
+            <td>growth-rate</td>
+            <td id="growth-rate">medium</td>
+          </tr>
+        </table>
+  `
 }
 
 
@@ -96,8 +156,14 @@ function insertHeight(){
 
 
 function insertType(){
-  let type = currentPokemon['types']['0']['type']['name'];
-  document.getElementById('pokemon-type').innerHTML = type;
+  let types = currentPokemon['types'];
+  document.getElementById('pokemon-type').innerHTML = '';
+  for (let i = 0; i < types.length; i++) {
+    let type = currentPokemon['types'][i]['type']['name'];
+    document.getElementById('pokemon-type').innerHTML += `<span>${type}</span>`;
+  }
+  
+  
 }
 
 
@@ -150,23 +216,38 @@ function insertGrowthRate(){
 }
 
 
-function changeCardSection(id){
-  removeActiveClass();
-  addActiveClass(id);
-}
 
 
-function removeActiveClass(navItem, id){
-  for (let i = 0; i < 4; i++) {
-    document.getElementById('nav-link-' + i).classList.remove('active');
+
+// get the elements from the base stats section
+function insertBaseStats(){
+  let statTypes = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed',];
+  let stats = currentPokemon['stats']
+  for (let i = 0; i < stats.length; i++) {
+    const stat = stats[i];
+    const statType = statTypes[i];
+    const baseStat = stats[i]['base_stat'];
+    document.getElementById('stat-value-' + statType).innerHTML = baseStat;
   }
+
 }
 
 
-function addActiveClass(id){
-  let navItem = document.getElementById(id);
-  navItem.classList.add('active');
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function capitalizeFirstLetter(string) {
