@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-  </head>
 
-  <body onload="loadPokemon()">
-    <div id="card-container">
-      <div id="pokedex-card">
-        <div id="card-header">
-          <span id="pokemon-name">Bulbasaur</span>
-          <span id="pokemon-number">#001</span>
-          <div id="pokemon-type">Grass</div>
-          <div class="w-100 d-flex justify-content-center img-container"><img id="pokemon-image" src="" alt="pokemon"></div>
-        </div>
-        <div id="card-description">
-          <table class="about-table">
-            <tr>
-              <td>Habitat</td>
-              <td id="habitat">Seed</td>
-            </tr>
-            <tr>
-              <td>Height</td>
-              <td id="height">70cm</td>
-            </tr>
-            <tr>
-              <td>Weight</td>
-              <td id="weight">6.9 kg</td>
-            </tr>
-            <tr>
-              <td>Abilities</td>
-              <td id="ability">Overgrow</td>
-            </tr>
-            <th>Breeding</th>
-            <tr>
-              <td>Gender</td>
-              <td id="gender">
-                <span id="gender-m">87.5%</span><span id="gender-w">12.5%</span>
-              </td>
-            </tr>
-            <tr>
-              <td>egg-groups</td>
-              <td id="egg-groups">Monster</td>
-            </tr>
-            <tr>
-              <td>egg-cycle</td>
-              <td id="egg-cycle">Grass</td>
-            </tr>
-          </table>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokedex</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body onload="loadPokemon()">
+  <div id="card-container">
+    <div id="pokedex-card">
+      <div id="card-header">
+        <span id="pokemon-name">Bulbasaur</span>
+        <span id="pokemon-number">#001</span>
+        <div id="pokemon-type">Grass</div>
+        <div class="w-100 d-flex justify-content-center img-container"><img id="pokemon-image" src="" alt="pokemon">
         </div>
       </div>
+      <div id="card-description">
+        <nav class="navbar navbar-expand-sm navbar-light">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" id="nav-link-0" onclick="changeCardSection('nav-link-0')" href="#">About</a>
+              <a class="nav-item nav-link" id="nav-link-1" onclick="changeCardSection('nav-link-1')" href="#">Base Stats</a>
+              <a class="nav-item nav-link" id="nav-link-2" onclick="changeCardSection('nav-link-2')" href="#">Evolution</a>
+              <a class="nav-item nav-link" id="nav-link-3" onclick="changeCardSection('nav-link-3')" href="#">Moves</a>
+            </div>
+          </div>
+        </nav>
+        <table class="about-table">
+          <tr>
+            <td>Habitat</td>
+            <td id="habitat">Seed</td>
+          </tr>
+          <tr>
+            <td>Height</td>
+            <td id="height">70cm</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td id="weight">6.9 kg</td>
+          </tr>
+          <tr>
+            <td>Abilities</td>
+            <td id="ability">Overgrow</td>
+          </tr>
+          <th>Breeding</th>
+          <tr>
+            <td>Gender</td>
+            <td id="gender">
+              <span id="gender-m">87.5%</span><span id="gender-w">12.5%</span>
+            </td>
+          </tr>
+          <tr>
+            <td>egg-groups</td>
+            <td id="egg-groups">Monster</td>
+          </tr>
+          <tr>
+            <td>growth-rate</td>
+            <td id="growth-rate">medium</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>

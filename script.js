@@ -1,15 +1,18 @@
 let currentPokemon;
-let species;
+// let species;
 let ability;
+let eggGroup;
+let abc;
 
 async function loadPokemon() {
-  let url = "https://pokeapi.co/api/v2/pokemon/ditto";
+  let url = "https://pokeapi.co/api/v2/pokemon/1/";
   let response = await fetch(url);
   currentPokemon = await response.json();
   renderPokemon(currentPokemon);
   console.log(currentPokemon);
-  loadSpecies();
-  loadAbility();
+  await loadSpecies();
+  await loadAbility();
+  await loadEggGroup();
 }
 
 
@@ -23,11 +26,19 @@ async function loadSpecies() {
 
 
 async function loadAbility(){
-  let url = 'https://pokeapi.co/api/v2/ability/132';
+  let url = 'https://pokeapi.co/api/v2/ability/1';
   let response = await fetch(url);
   ability = await response.json();
   console.log(ability);
-  editBackgroundColor();
+}
+
+
+async function loadEggGroup(){
+  // let url = species['egg_groups']['0']['url'];
+  let url = 'https://pokeapi.co/api/v2/generation/5/';
+  let response = await fetch(url);
+  eggGroup = await response.json();
+  console.log(eggGroup);
   renderPokemonCard();
 }
 
@@ -56,6 +67,10 @@ function renderPokemonCard(){
   insertType();
   insertWeight();
   insertAbility();
+  insertHeight();
+  insertEggGroups();
+  insertGender();
+  insertGrowthRate();
 }
 
 
@@ -67,9 +82,16 @@ function insertName(){
 
 
 function insertWeight(){
-  let weightInLbs = currentPokemon['weight'];
-  let weightInKg = Math.round(weightInLbs * 0.45359237 * 10) / 10; //rounded to one decimal
-  document.getElementById('weight').innerHTML = `${currentPokemon['weight']} lbs (${weightInKg}kg)`;
+  let weightInKg = currentPokemon['weight'] / 10
+  let weightInLbs = Math.round(weightInKg * 2.20462 * 10) / 10;   //rounded to one decimal
+  document.getElementById('weight').innerHTML = `${weightInLbs} lbs (${weightInKg} kg)`;
+}
+
+
+function insertHeight(){
+  let heightInCm = currentPokemon['height'] * 10;
+  let heightInLbs = toFeet(heightInCm);
+  document.getElementById('height').innerHTML = `${heightInLbs} lbs (${heightInCm} cm)`;
 }
 
 
@@ -80,20 +102,81 @@ function insertType(){
 
 
 function insertHabitat(){
-  debugger
   let habitat = species['habitat']['name'];
   document.getElementById('habitat').innerHTML = habitat;
 }
 
 
 function insertAbility(){
-  let abilityLocal = ability['name'];
-  document.getElementById('ability').innerHTML = abilityLocal;
+  let abilities = currentPokemon['abilities'];
+  document.getElementById('ability').innerHTML = '';
+  for(let i=0; i < abilities.length; i++){
+    // let abilityPokemon = abilities['i']['ability']['name'];
+    document.getElementById('ability').innerHTML += `<span>${abilities[i]['ability']['name']}</span>`;
+  }
+  // let abilityPokemon = currentPokemon['abilities']['i']['ability']['name'];
+  // let hidden = currentPokemon['abilities']['i']['is_hidden'];
+  // document.getElementById('ability').innerHTML = abilityPokemon;
 }
 
 
+function insertEggGroups(){
+  let genderRate = species['gender_rate'];
+  let genderPropabilityF = species['gender_rate'] * 100 / 8;
+  let genderPropabilityM = 100 - genderPropabilityF;
+  let gender = document.getElementById('gender');
+  if (genderRate === -1){
+    gender.innerHTML = '<img src="img/genderless" alt="genderless">genderless';
+  }else{
+    gender.innerHTML = `<img src="img/masculine.png" alt="masculine"><span>${genderPropabilityM}%</span><img src="img/feminine.png" alt="feminine"><span>${genderPropabilityF}%</span>`
+  }
+}
+
+
+function insertGender(){
+  let eggGroups = species['egg_groups']
+  document.getElementById('egg-groups').innerHTML = ''
+  for (let i  = 0; i < eggGroups.length; i++) {
+    const eggGroup = eggGroups[i]['name'];
+    document.getElementById('egg-groups').innerHTML += `<span>${eggGroup}</span>`
+  }
+}
+
+
+function insertGrowthRate(){
+  let growthRate = species['growth_rate']['name']
+  document.getElementById('growth-rate').innerHTML = ''
+  document.getElementById('growth-rate').innerHTML += `<span>${growthRate}</span>`
+}
+
+
+function changeCardSection(id){
+  removeActiveClass();
+  addActiveClass(id);
+}
+
+
+function removeActiveClass(navItem, id){
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('nav-link-' + i).classList.remove('active');
+  }
+}
+
+
+function addActiveClass(id){
+  let navItem = document.getElementById(id);
+  navItem.classList.add('active');
+}
 
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+function toFeet(n) {
+  var realFeet = ((n*0.393700) / 12);
+  var feet = Math.floor(realFeet);
+  var inches = Math.round(10*((realFeet - feet) * 12)) / 10;
+  return feet + "&prime;" + inches + '&Prime;';
 }

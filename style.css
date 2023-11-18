@@ -3,20 +3,21 @@ body {
 }
 
 #pokedex {
-    background-color: rgb(129, 75, 129);
 }
+
+
+
 
 
 
 /**********    Pokemon-Card-Style      *********/
 #pokedex-card {
-    background-color: blueviolet;
-    width: 200px;
+    width: 225px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.8);
+    box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.8);
 }
 
-#card-container{
+#card-container {
     padding: 50px;
 }
 
@@ -30,17 +31,23 @@ body {
 
 #pokemon-name {
     color: white;
+    position: relative;
+    z-index: 3;
 }
 
 #pokemon-number {
     color: white;
+    position: relative;
+    z-index: 3;
 }
 
 #pokemon-type {
     color: white;
+    position: relative;
+    z-index: 3;
 }
 
-.img-container{
+.img-container {
     position: absolute;
     bottom: -10px;
 }
@@ -53,26 +60,95 @@ body {
 
 
 /* the lower part of the card */
-.about-table{
+.navbar-nav{
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 !important;
+    /* padding-left: 8px;
+    padding-right: 8px; */
+}
+.nav-item{
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    color: rgb(140, 140, 140) !important;
+    /* padding: 0px !important;
+    padding-bottom: 4px !important;
+    transition: border ease-in-out 1s !important; */
+}
+
+/* .nav-item:hover{
+    border-bottom: 5px solid grey !important;
+} */
+
+.nav-item:after {
+    transition: all ease-in-out .2s;
+    background: none repeat scroll 0 0 grey;
+    content: "";
+    display: block;
+    height: 1px;
+    width: 0;
+    margin-top: 4px;
+}
+.nav-item:hover:after {
+    width: 100%;
+}
+
+.active:after{
+    background: none repeat scroll 0 0 grey;
+    content: "";
+    display: block;
+    height: 1px;
+    width: 0;
+    margin-top: 4px;
+    width: 100%;
+}
+
+.about-table {
     font-size: 12px;
 }
 
-.about-table td:first-child{
+.about-table td:first-child {
     color: grey;
     padding-right: 10px;
 }
 
-#card-description{
+
+#card-description {
     padding: 5px;
     padding-top: 30px;
     padding-bottom: 10px;
     background-color: white;
     border-radius: 10px;
 }
+
 #species {}
+
 #height {}
+
 #weight {}
-#abilities {}
-#gender {}
-#egg-groups {}
+
+#ability span{
+    margin-right: 10px;
+}
+
+#gender {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#gender img {
+    height: 16px;
+    padding-right: 4px;
+}
+
+#gender span {
+    padding-right: 12px;
+}
+
+#egg-groups span {
+    margin-right: 10px;
+}
+
 #egg-cycle {}
