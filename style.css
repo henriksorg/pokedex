@@ -2,30 +2,133 @@ body {
     margin: 0;
 }
 
-#pokedex {
+.load-more {
+    background-color: aqua;
+    width: 100%;
+    height: 50rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#render-pokedex {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    justify-content: center;
+}
+
+.pokedex-cards{
+    margin: 24px 16px;
+    padding: 16px;
+    background-color: aqua;
+    border-radius: 10px;
+    border: 3px solid lightgray;
+    position: relative;
+    min-width: 300px;
+    min-height: 200px;
+}
+
+.pokedex-cards:hover{
+    cursor: pointer;
+}
+
+.overview-card-image{
+    height: 160px;
+    z-index: 2;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+}
+
+.overview-card-name{
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.overview-pokeball-container{
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    /* width: 100%;
+    height: 100%; */
+    z-index: 1;
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-start; */
+    opacity: 0.5;
+}
+
+.overview-pokeball{
+    width: 150px;
+}
+
+.pokemon-type-pokedex{
+    margin-top: 16px;
+}
+
+.pokemon-type-pokedex span{
+    background-color: #FFFFFF;
+    margin-bottom: 8px;
+    font-size: 24px;
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 20px;
+    opacity: 0.5;
+}
 
 
 
 
 
 /**********    Pokemon-Card-Style      *********/
-#pokedex-card {
-    width: 225px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.8);
+#card-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 899;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#card-container {
-    padding: 50px;
+#pokedex-card {
+    height: 900px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.8);
+    z-index: 900;
+    max-height: 90vh !important;
+    display: flex;
+    flex-direction: column;
 }
+
+
+.leave-arrow{
+    position: relative;
+    margin-left: 8px;
+    margin-top: 24px;
+    z-index: 999;
+    transition: all .2s;
+}
+
+.leave-arrow:hover{
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 1px #FFFFFF);
+}
+
 
 /*the upper part of the card */
 #card-header {
     padding: 5px;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 256px;
     border-radius: 10px;
 }
 
@@ -33,35 +136,57 @@ body {
     color: white;
     position: relative;
     z-index: 3;
+    font-size: 56px;
+    font-weight: 700;
 }
 
 #pokemon-number {
     color: white;
     position: relative;
     z-index: 3;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 #pokemon-type {
-    color: white;
     position: relative;
     z-index: 3;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
 }
 
 #pokemon-type span{
-    font-size: 10px;
+    font-size: 24px;
     margin-right: 8px;
-    padding: 4px 4px;
-    background-color: rgb(75, 186, 75);
+    padding: 4px 12px;
+    background-color: white;
+    opacity: 0.5;
     border-radius: 20px;
 }
 
 .img-container {
     position: absolute;
-    bottom: -10px;
+    bottom: -40px;
 }
 
 #pokemon-image {
-    height: 150px;
+    height: 450px;
+}
+
+.card-pokeball-container{
+    position: absolute;
+    bottom: -60px;
+    right: -10px;
+    /* width: 100%;
+    height: 100%; */
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-start; */
+    opacity: 0.5;
+}
+
+.card-pokeball{
+    width: 300px;
 }
 
 
@@ -77,9 +202,10 @@ body {
     padding-right: 8px; */
 }
 .nav-item{
-    font-size: 10px !important;
+    font-size: 20px !important;
     font-weight: 500 !important;
-    color: rgb(140, 140, 140) !important;
+    color: rgb(175, 175, 175) !important;
+    cursor: pointer;
     /* padding: 0px !important;
     padding-bottom: 4px !important;
     transition: border ease-in-out 1s !important; */
@@ -91,10 +217,10 @@ body {
 
 .nav-item:after {
     transition: all ease-in-out .2s;
-    background: none repeat scroll 0 0 grey;
+    background: none repeat scroll 0 0 rgb(175, 175, 175);
     content: "";
     display: block;
-    height: 1px;
+    height: 3px;
     width: 0;
     margin-top: 4px;
 }
@@ -103,10 +229,10 @@ body {
 }
 
 .active:after{
-    background: none repeat scroll 0 0 grey;
+    background: none repeat scroll 0 0 rgb(175, 175, 175);
     content: "";
     display: block;
-    height: 1px;
+    height: 3px;
     width: 0;
     margin-top: 4px;
     width: 100%;
@@ -114,11 +240,14 @@ body {
 
 .about-table {
     font-size: 12px;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
 }
 
 .about-table td:first-child {
     color: grey;
-    padding-right: 10px;
+    padding-right: 24px;
 }
 
 
@@ -128,6 +257,9 @@ body {
     padding-bottom: 10px;
     background-color: white;
     border-radius: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 #species {}
@@ -147,7 +279,7 @@ body {
 }
 
 #gender img {
-    height: 16px;
+    height: 24px;
     padding-right: 4px;
 }
 
@@ -172,6 +304,13 @@ body {
     font-size: 12px;
 }
 
+.stats-table tbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .stat-container{
     display: flex;
     justify-content: space-between;
@@ -184,14 +323,55 @@ body {
 
 .progress{
     width: 50%;
-    height: 4px !important;
+    height: 12px !important;
 }
 
 .stat-label{
-    width: 33%;
+    width: 30%;
+    font-size: 20px;
+    font-weight: 500;
+    color: gray;
 }
 
 .stat-value{
     text-align: right;
     margin-right: 8px;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+.evolution-arrow{
+    width: 32px ;
+    height: 100% ;
+}
+
+.evolution-images{
+    width: 150px;
+}
+
+
+@media(max-height:950px){
+    #pokedex-card{
+        max-height: 90vh;
+        max-width: 60vh;
+        font-size: 8px;
+    }
+
+    #pokemon-image{
+        height: 30vh;
+    }
+
+    #card-header{
+        padding-bottom: 20vh;
+    }
+    .about-table{
+        font-size: 2.2vh;
+    }
+
 }
