@@ -12,15 +12,16 @@
 <body onload="init()">
   <nav class="navbar navbar-light bg-light ">
     <div class="container-fluid d-flex justify-content-around">
-      <!-- <img src="img/pokedex.png" alt="Pokedex"> -->
+      <img src="img/pokedex.png" alt="Pokedex" class="title-img">
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" id="search" onkeyup="filterPokemon()" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </nav>
   <div id="render-pokedex"></div>
   <div id="render-pokemon-card-container"></div>
+  <div id="load" class="load-more"></div>
   <script src="script.js"></script>
 </body>
 
