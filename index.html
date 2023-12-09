@@ -13,14 +13,15 @@
   <nav class="navbar navbar-light bg-light ">
     <div class="container-fluid d-flex justify-content-around">
       <img src="img/pokedex.png" alt="Pokedex" class="title-img">
-      <form class="d-flex">
-        <input class="form-control me-2" id="search" onkeyup="filterPokemon()" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="d-flex">
+        <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" onclick="filterPokemon()">Search</button>
+      </div>
     </div>
   </nav>
   <div id="render-pokedex"></div>
   <div id="render-pokemon-card-container"></div>
+  <div id="insert-move-info" onclick="closeMoveInfo()"></div>
   <div id="load" class="load-more"></div>
   <script src="script.js"></script>
 </body>

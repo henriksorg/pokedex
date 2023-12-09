@@ -55,8 +55,9 @@ async function renderPokedex() {
   }
   document.getElementById('load').classList.remove('d-none')
   currentIndex += itemsPerLoad; // Update currentIndex um itemsPerLoad
-  // currentIndex = maxIndex; // Aktualisieren des Index des letzten geladenen Pokémon
-  // maxIndex = maxIndex + 40;
+  if (maxIndex == currentPokedex["pokemon_entries"].length){
+    document.getElementById('load').classList.add('d-none')
+  }
 }
 
 
@@ -146,9 +147,11 @@ function editPokedexCard(bgColor, pokeBg) {
   }
 }
 
+
 function changeFontColor(PokeId, color) {
   document.getElementById(PokeId).style = `color: ${color}`;
 }
+
 
 function editBgColor(pokeBg, bg) {
   document.getElementById(pokeBg).style = `background-color: ${bg}`;
@@ -165,7 +168,7 @@ let abc;
 async function openPokemonCard(pokemonId) {
   currentPokemon = await loadPokemon(pokemonId);
   species = await loadSpecies('card');
-  console.log(currentPokemon);
+  // console.log(currentPokemon);
   // console.log(species);
   await loadEvolution(pokemonId);
   // await loadMove();
@@ -243,7 +246,7 @@ function renderPokemonCardTemplate() {
           </div>
         </div>
       </nav>
-      <div id="insert-container" class="flex-grow-1 p-3 position-relative">
+      <div id="insert-container" class="flex-grow-1 p-3 position-relative d-flex flex-column justify-content-between">
       </div>
     </div>
   </div>
@@ -264,38 +267,47 @@ async function renderMoves() {
     let url = moves[i]['move']['url'];
     let move = await loadMoves(url);
     console.log(move)
-    insertMove(move);
+    insertMove(move,i);
   }
 }
 
 
 function renderMovesTemplate(){
-  let name = currentPokemon["species"]["name"];
   return /*html*/`
-    <h3>Moves, that ${name} can learn</h3>
-    <table class="w-100">
+  <div class="moves-table-container">
+    <table  class="w-100 table table-striped table-hover">
       <tbody id="insert-moves-table" class="w-100">
-        <tr>
+        <tr class="sticky-top">
           <th>Name</th>
           <th>Power</th>
           <th>Accuracy</th>
         </tr>
       </tbody>
     </table>
+  </div>
+  <span class="mt-4">* click on move for more info</span>
   `
 }
 //test
 
-function insertMove(move){
-  let name = move['name']
-  let accuracy = move['accuracy']
-  let power = move['power']
-  document.getElementById('insert-moves-table').innerHTML += insertMoveTemplate(name, accuracy, power);
+function insertMove(move,i){
+  let name = capitalizeFirstLetter(move['name'])
+  let accuracy = minusIfNull(move['accuracy'])
+  let power = minusIfNull(move['power'])
+  document.getElementById('insert-moves-table').innerHTML += insertMoveTemplate(name, accuracy, power,i);
 }
 
-function insertMoveTemplate(name, accuracy, power){
+function minusIfNull(item){
+  if (item == null){
+    return '-'
+  }else{
+    return item
+  }
+}
+
+function insertMoveTemplate(name, accuracy, power, i){
   return /*html*/`
-    <tr>
+    <tr onclick ="openMoveInfo(${i})">
       <td>${name}</td>
       <td>${power}</td>
       <td>${accuracy}</td>
@@ -309,6 +321,33 @@ async function loadMoves(url){
     return await response.json();
     // }
 }
+
+
+async function openMoveInfo(i){
+  let moves = currentPokemon['moves']
+  let url = moves[i]['move']['url'];
+  let move = await loadMoves(url);
+  console.log(move)
+  let moveDescription = move['flavor_text_entries']['4']['flavor_text']
+  document.getElementById('insert-move-info').innerHTML = /*html*/`
+  <div class="move-info-bg">
+    <div class="move-info">
+    <div class="alert alert-primary d-flex align-items-center" role="alert">
+      <img src="img/info.png" alt="move-info" class="info-image me-3">
+      <div>
+        ${moveDescription}
+      </div>
+    </div>
+    </div>
+  </div>
+  `
+}
+
+
+function closeMoveInfo(){
+  document.getElementById('insert-move-info').innerHTML = '';
+}
+
 
 function closePokemonCard() {
   document.getElementById("card-bg").classList.add("d-none");
@@ -380,6 +419,7 @@ function renderAboutSectionTemplate() {
             <td id="ability">Overgrow</td>
           </tr>
           <th>Breeding</th>
+          <th></th>
           <tr>
             <td>Gender</td>
             <td id="gender">
@@ -503,7 +543,7 @@ function insertGrowthRate() {
 // get the the base stats section
 function renderBaseStats() {
   document.getElementById("insert-container").innerHTML = renderBaseStatsTemplate();
-  insertBaseStats();
+  setTimeout(insertBaseStats, 300);
 }
 
 function renderBaseStatsTemplate() {
@@ -512,64 +552,64 @@ function renderBaseStatsTemplate() {
     <table class="w-100 h-100">
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-hp">HP</td>
-        <td class="stat-value" id="stat-value-hp">1</td>
+        <td class="stat-value" id="stat-value-hp">0</td>
         <td class="flex-grow-1 d-flex align-items-center">
           <div class="progress w-100">
-            <div class="progress-bar" style="width: 1% " id="stat-progress-hp"></div>
+            <div class="progress-bar" style="width: 0% " id="stat-progress-hp"></div>
           </div>
         </td>
       </tr>
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-attack">Attack</td>
-        <td class="stat-value" id="stat-value-attack">1</td>
+        <td class="stat-value" id="stat-value-attack">0</td>
         <td class="flex-grow-1 d-flex align-items-center">
           <div class="progress w-100">
-            <div class="progress-bar" style="width: 1%" id="stat-progress-attack"></div>
+            <div class="progress-bar" style="width: 0%" id="stat-progress-attack"></div>
           </div>
         </td>
       </tr>
       <tr class="d-flex w-100">
          <td class="stat-label" id="stat-label-defense">Defense</td>
-        <td class="stat-value" id="stat-value-defense">1</td>
+        <td class="stat-value" id="stat-value-defense">0</td>
          <td class="flex-grow-1 d-flex align-items-center">
            <div class="progress w-100">
-             <div class="progress-bar" style="width: 1%" id="stat-progress-defense"></div>
+             <div class="progress-bar" style="width: 0%" id="stat-progress-defense"></div>
            </div>
          </td>
       </tr>
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-special-attack">Sp-Attack</td>
-        <td class="stat-value" id="stat-value-special-attack">1</td>
+        <td class="stat-value" id="stat-value-special-attack">0</td>
         <td class="flex-grow-1 d-flex align-items-center">
           <div class="progress w-100">
-            <div class="progress-bar" style="width: 1%" id="stat-progress-special-attack"></div>
+            <div class="progress-bar" style="width: 0%" id="stat-progress-special-attack"></div>
           </div>
         </td>
       </tr>
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-special-defense">Sp-Defense</td>
-        <td class="stat-value" id="stat-value-special-defense">1</td>
+        <td class="stat-value" id="stat-value-special-defense">0</td>
         <td class="flex-grow-1 d-flex align-items-center">
           <div class="progress w-100">
-            <div class="progress-bar" style="width: 1%" id="stat-progress-special-defense"></div>
+            <div class="progress-bar" style="width: 0%" id="stat-progress-special-defense"></div>
           </div>
         </td>
       </tr>
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-speed">Speed</td>
-        <td class="stat-value" id="stat-value-speed">1</td>
+        <td class="stat-value" id="stat-value-speed">0</td>
         <td class="flex-grow-1 d-flex align-items-center">
           <div class="progress w-100">
-            <div class="progress-bar" style="width: 1%" id="stat-progress-speed"></div>
+            <div class="progress-bar" style="width: 0%" id="stat-progress-speed"></div>
           </div>
         </td>
       </tr>
       <tr class="d-flex w-100">
         <td class="stat-label" id="stat-label-total">Total</td>
-         <td class="stat-value" id="stat-value-total">1</td>
+         <td class="stat-value" id="stat-value-total">0</td>
          <td class="flex-grow-1 d-flex align-items-center">
            <div class="progress w-100">
-             <div class="progress-bar" style="width: 1%" id="stat-progress-total"></div>
+             <div class="progress-bar" style="width: 0%" id="stat-progress-total"></div>
           </div>
          </td>
       </tr>
@@ -854,7 +894,9 @@ function insertEvolutionImagesSecondStage() {
 
 
 
-
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 function capitalizeFirstLetter(string) {
