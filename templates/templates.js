@@ -69,6 +69,7 @@ function renderMovesTemplate() {
           </tr>
         </tbody>
       </table>
+      <div id="load-moves" class="load-more"></div>
     </div>
     <span class="mt-4">* click on move for more info</span>
     `
@@ -128,19 +129,47 @@ function renderAboutSectionTemplate() {
 
 function renderEvolutionTemplate() {
   return /*html*/ `
-    <div class="loader"></div>
+    <div class="loader" id="loader"></div>
     <div class="evolution-container w-100 h-100 position-relative">
-      <div class="d-flex justify-content-between align-items-center ">
-        <img src="" alt="<div></div>" id="no-evolution" class='evolution-images'>
-        <img src="img/arrow.png" alt="to" class="evolution-arrow" >
-        <img src="" alt="evolution 1" id="to-first-evolution" class='evolution-images'>
-      </div>
       <div class="d-flex justify-content-between align-items-center" id="second-evolution-container">
-        <img src="" alt="evolution 1" id="from-first-evolution" class='evolution-images'>
+        <img src="" alt="<div></div>" id="first-evolution" class='evolution-images'>
+        <img src="img/arrow.png" alt="to" class="evolution-arrow" >
+        <img src="" alt="evolution 1" id="to-second-evolution" class='evolution-images'>
+      </div>
+      <div class="d-flex justify-content-between align-items-center" id="third-evolution-container">
+        <img src="" alt="evolution 1" id="from-second-evolution" class='evolution-images'>
         <img src="img/arrow.png" alt="to" class="evolution-arrow">
-        <img src="" alt="evolution 2" id="to-second-evolution" class='evolution-images'>
+        <img src="" alt="evolution 2" id="to-third-evolution" class='evolution-images'>
       </div>
       </div>
     </div>
     `;
+}
+
+
+function insertNoEvolutionTemplate(){
+  return /*html*/`
+    <div class="no-evolution-text">
+      <h4 class="text-align-center mb-4">This Pokemon has no evolution!</h4>
+      <p>
+        Around 14% of Pokémon, primarily Legendary and Mythical ones, 
+        cannot evolve nor are they evolutions of other Pokémon. </p>
+    </div>
+  `
+}
+
+
+function openMoveInfoTemplate(moveDescription){
+  return /*html*/`
+  <div class='move-info-bg'>
+    <div class='move-info'>
+    <div class='alert alert-primary d-flex align-items-center' role='alert'>
+      <img src='img/info.png' alt='move-info' class='info-image me-3'>
+      <div>
+        ${moveDescription}
+      </div>
+    </div>
+    </div>
+  </div>
+  `
 }
