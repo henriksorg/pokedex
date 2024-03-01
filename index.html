@@ -7,21 +7,32 @@
   <title>Pokedex</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body onload="init()">
   <nav class="navbar navbar-light bg-light ">
     <div class="container-fluid d-flex justify-content-around">
-      <!-- <img src="img/pokedex.png" alt="Pokedex"> -->
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <img src="img/pokedex.png" alt="Pokedex" class="title-img">
+      <div class="d-flex">
+        <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search" onkeyup="filterPokemon()">
+        <button class="btn btn-outline-success" onclick="filterPokemon()">Search</button>
+      </div>
     </div>
   </nav>
   <div id="render-pokedex"></div>
   <div id="render-pokemon-card-container"></div>
+  <div id="insert-move-info" onclick="closeMoveInfo()"></div>
+  <div id="load" class="load-more"></div>
+  <script src="templates/templates.js"></script>
+  <script src="pokecard.js"></script>
   <script src="script.js"></script>
+  
 </body>
-
 </html>
